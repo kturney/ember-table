@@ -12,6 +12,7 @@ import { closest } from '../../-private/utils/element';
 
 import layout from './template';
 import { SELECT_MODE } from '../../-private/collapse-tree';
+import sendAction from 'ember-table/-private/utils/send-action';
 
 /**
   The table row component. This component manages row level concerns, and yields
@@ -133,7 +134,7 @@ export default class EmberTr extends Component {
     let rowValue = this.get('rowValue');
     let rowMeta = this.get('rowMeta');
 
-    this.sendAction(action, {
+    sendAction(this, action, {
       event,
 
       rowValue,

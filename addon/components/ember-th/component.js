@@ -13,6 +13,7 @@ import { closest } from '../../-private/utils/element';
 
 import layout from './template';
 import { get } from '@ember/object';
+import sendAction from 'ember-table/-private/utils/send-action';
 
 const COLUMN_INACTIVE = 0;
 const COLUMN_RESIZING = 1;
@@ -148,7 +149,7 @@ export default class EmberTh extends BaseTableCell {
 
   @action
   sendDropdownAction(...args) {
-    this.sendAction('onDropdownAction', ...args);
+    sendAction(this, 'onDropdownAction', ...args);
   }
 
   click(event) {

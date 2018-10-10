@@ -9,6 +9,7 @@ import { Action } from '@ember-decorators/argument/types';
 
 import layout from './template';
 import { SELECT_MODE } from '../../-private/collapse-tree';
+import sendAction from 'ember-table/-private/utils/send-action';
 
 /**
   The table cell component. This component manages cell level concerns, yields
@@ -180,6 +181,6 @@ export default class EmberTd extends BaseTableCell {
       rowMeta,
     });
 
-    this.sendAction(action, values);
+    sendAction(this, action, values);
   }
 }

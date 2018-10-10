@@ -3,6 +3,7 @@ import { tagName, attribute } from '@ember-decorators/component';
 import { argument } from '@ember-decorators/argument';
 import { type, optional } from '@ember-decorators/argument/type';
 import { Action } from '@ember-decorators/argument/types';
+import sendAction from 'ember-table/-private/utils/send-action';
 
 @tagName('input')
 export default class SimpleCheckbox extends Component {
@@ -45,7 +46,7 @@ export default class SimpleCheckbox extends Component {
   ariaLabel;
 
   click(event) {
-    this.sendAction('onClick', event);
+    sendAction(this, 'onClick', event);
   }
 
   change(event) {
@@ -58,6 +59,6 @@ export default class SimpleCheckbox extends Component {
     this.element.checked = this.get('checked');
     this.element.indeterminate = this.get('indeterminate');
 
-    this.sendAction('onChange', checked, { value, indeterminate }, event);
+    sendAction(this, 'onChange', checked, { value, indeterminate }, event);
   }
 }

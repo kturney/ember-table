@@ -17,6 +17,7 @@ import { sortMultiple, compareValues } from '../../-private/utils/sort';
 import ColumnTree, { RESIZE_MODE, FILL_MODE, WIDTH_CONSTRAINT } from '../../-private/column-tree';
 
 import layout from './template';
+import sendAction from 'ember-table/-private/utils/send-action';
 
 /**
   The table header component. This component manages and receives the column
@@ -167,7 +168,7 @@ export default class EmberTHead extends Component {
   columnMetaCache = new Map();
 
   columnTree = ColumnTree.create({
-    sendAction: this.sendAction.bind(this),
+    sendAction: sendAction.bind(null, this),
     columnMetaCache: this.columnMetaCache,
   });
 
@@ -265,7 +266,7 @@ export default class EmberTHead extends Component {
   }
 
   sendUpdateSort = newSorts => {
-    this.sendAction('onUpdateSorts', newSorts);
+    sendAction(this, 'onUpdateSorts', newSorts);
   };
 
   fillupHandler = () => {

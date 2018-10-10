@@ -15,6 +15,7 @@ import { getScale, getOuterClientRect, getInnerClientRect } from './utils/elemen
 import { MainIndicator, DropIndicator } from './utils/reorder-indicators';
 import { notifyPropertyChange } from './utils/ember';
 import { assert } from '@ember/debug';
+import sendAction from './utils/send-action';
 
 const SCROLL_THRESHOLD = 50;
 
@@ -870,7 +871,7 @@ export default class ColumnTree extends EmberObject {
 
     this.container.classList.remove('is-reordering');
 
-    this.sendAction('onReorder', get(node, 'column'), get(closestColumn, 'column'));
+    sendAction(this, 'onReorder', get(node, 'column'), get(closestColumn, 'column'));
   }
 
   startResize(node, clientX) {
@@ -945,7 +946,7 @@ export default class ColumnTree extends EmberObject {
 
     this.container.classList.remove('is-resizing');
 
-    this.sendAction('onResize', get(node, 'column'));
+    sendAction(this, 'onResize', get(node, 'column'));
   }
 
   updateScroll(node, stopAtLeft, stopAtRight, callback) {

@@ -13,6 +13,7 @@ import CollapseTree, { SELECT_MODE } from '../../-private/collapse-tree';
 
 import layout from './template';
 import { assert } from '@ember/debug';
+import sendAction from 'ember-table/-private/utils/send-action';
 
 /**
   The table body component. This component manages the main bulk of the rows of
@@ -212,7 +213,7 @@ export default class EmberTBody extends Component {
     items. This is much more convenient for most table operations in general.
   */
   collapseTree = CollapseTree.create({
-    sendAction: this.sendAction.bind(this),
+    sendAction: sendAction.bind(null, this),
   });
 
   /**
